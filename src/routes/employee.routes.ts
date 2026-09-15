@@ -1,5 +1,5 @@
 import { Router } from "express";
-import EmployeeControllers from "../controllers/employee.controllers.ts";
+import { EmployeeControllers } from "../controllers/employee.controllers.ts";
 
 export class EmployeeRoutes {
     // Modificador publico para poder acceder al router desde cualquier archivo externo
