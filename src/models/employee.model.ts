@@ -1,7 +1,7 @@
 import { Schema, model, Document } from "mongoose";
 
 // Definicion del contrato que tendra un empleado (forma de los datos)
-export interface IEmployee {
+export interface IEmployee extends Document {
     name: string;
     position: string;
     baseSalary: number;
