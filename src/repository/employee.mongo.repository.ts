@@ -22,7 +22,7 @@ export class EmployeeMongoRepository implements EmployeeRepository {
     }
 
     async delete(id: string): Promise<boolean> {
-        const result = Employee.findByIdAndDelete(id);
+        const result = await Employee.findByIdAndDelete(id);
 
         // Retorna true si lo borro, null si es que no encontro el empleado
         return result !== null;
