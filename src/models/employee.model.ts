@@ -1,6 +1,16 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 
-const employeeSchema = new Schema(
+// Definicion del contrato que tendra un empleado (forma de los datos)
+export interface IEmployee {
+    name: string;
+    position: string;
+    baseSalary: number;
+    yearsOfService: number;
+    finalSalary: number;
+}
+
+// Nuestro esquema espera los datos de la forma en que fueron definidos en el contrato
+const employeeSchema = new Schema<IEmployee>(
     {
         name: { type: String, required: true },
         position: { type: String, required: true },
@@ -11,4 +21,5 @@ const employeeSchema = new Schema(
     { timestamps: true }
 );
 
-export const Employee = model('Employee', employeeSchema);
+// El modelo maneja datos del tipo IEmployee
+export const Employee = model<IEmployee>('Employee', employeeSchema);
