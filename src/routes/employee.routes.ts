@@ -1,15 +1,18 @@
-import { Router, Request, Response, request } from "express";
+import { Router } from "express";
 import EmployeeControllers from "../controllers/employee.controllers.ts";
 
 export class EmployeeRoutes {
-    private router: Router;
+    // Modificador publico para poder acceder al router desde cualquier archivo externo
+    public readonly router: Router;
 
-    constructor(readonly controller: EmployeeControllers = new EmployeeControllers()) {
-        this.controller = controller;
+    // Recibe el controlador ya instanciado desde fuera (inyeccion de dependencias)
+    constructor(private readonly controller: EmployeeControllers) {
         this.router = Router();
+        this.initializeRoutes();
     }
 
-    routes() {
+    // Se dispara en automatico al instanciar la clase
+    private initializeRoutes() {
         // Traer todos los empleados
         this.router.get("/employee/", this.controller.findAllEmployees);
         // Crear un nuevo empleado
